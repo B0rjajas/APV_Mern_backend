@@ -1,0 +1,25 @@
+const express = require("express");
+const dotenv = require("dotenv");
+const conectarDB = require("./config/db.js");
+const veterinarioRouter = require("./routes/veterianarioRoutes.js")
+
+const app = express();
+dotenv.config();
+
+
+
+conectarDB()
+
+
+app.use("/api/veterinarios", veterinarioRouter);
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+    console.log(`Inician desde la puerta galáctica ${PORT}`);
+});
+
+
+app.use('/', (req, res) => {
+    res.send('Hola Marcion!!!!')
+});
